@@ -57,14 +57,14 @@ field_names = [field[0] for field in fields]#getting the name of the fields, i.e
 ndx=field_names.index('ADMIN')#locating the field name "Admin".It represents the international name of countries
 buffer=[]#An empty array to store the records and geomtry
 for sr in sf.shapeRecords():
-       atr = {field_names[ndx]:sr.record[ndx2]} 
+       atr = {field_names[ndx]:sr.record[ndx]} 
        geom = sr.shape.__geo_interface__
        buffer.append(dict(type="Feature",properties=atr, geometry=geom))
        """ It should be noted, the attributes can be customized by only including certain countries
            or modifying the names.For instance,the following lines changing the country name eSwatini to
            Eswatini
-           if sr.record[ndx3]=='eSwatini':
-              sr.record[ndx3]='Eswatini'"""
+           if sr.record[ndx]=='eSwatini':
+              sr.record[ndx]='Eswatini'"""
        
 
 #writing the GeoJson file
