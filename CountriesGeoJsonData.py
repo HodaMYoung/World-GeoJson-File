@@ -54,7 +54,7 @@ the first stage to create a GeoJson file.""""
 sf=shapefile.Reader('worldcountries.shp')# reading the .shp file
 fields=sf.fields[1:]#getting the fields and escping the first field, i.e. deletion flag
 field_names = [field[0] for field in fields]#getting the name of the fields, i.e. the first element of each field
-ndx=field_names.index('ADMIN')#locating the field name "Admin".It represents the international name of countries
+ndx=field_names.index('ADMIN')#locating the field name "Admin".It represents the international version countries' names
 buffer=[]#An empty array to store the records and geomtry
 for sr in sf.shapeRecords():
        atr = {field_names[ndx]:sr.record[ndx]} 
@@ -68,8 +68,8 @@ for sr in sf.shapeRecords():
        
 
 #writing the GeoJson file
-geojson = open("CountriesAdmin.json", "w")#opening the GeoJson file named Countries.json to assign the extracted data
-geojson.write(dumps({"type": "FeatureCollection", "features": buffer}) + "\n")#write the data
+geojson = open("CountriesAdmin.json", "w")#opening the GeoJson file named CountriesAdmin.json to assign the extracted data
+geojson.write(dumps({"type": "FeatureCollection", "features": buffer}) + "\n")#writing
 geojson.close()#closing the GeoJson file.
 
 """Recommended Website:
